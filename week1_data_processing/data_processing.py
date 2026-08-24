@@ -64,3 +64,16 @@ plt.ylabel("Cumulative Variance (%)")
 plt.title("PCA Explained Variance")
 plt.savefig("week1_data_processing/variance_plot.png")
 plt.close()
+
+plt.figure(figsize=(10, 5))
+for c in [1, 8]:
+    ys, xs = np.where(gt == c)
+    if len(ys) > 0:
+        signature = cube_norm[ys[0], xs[0], :]
+        plt.plot(signature, label=f"Class {c}")
+plt.xlabel("Spectral Band")
+plt.ylabel("Reflectance")
+plt.legend()
+plt.title("Spectral Signature Comparison")
+plt.savefig("week1_data_processing/spectral_signatures.png")
+plt.close()
