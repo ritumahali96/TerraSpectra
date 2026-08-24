@@ -49,3 +49,10 @@ plt.imshow(gt, cmap="tab20")
 plt.title("Ground Truth")
 plt.savefig("week1_data_processing/ground_truth.png")
 plt.close()
+
+fig, axes = plt.subplots(1, 3, figsize=(15, 5))
+for i in range(3):
+    axes[i].imshow(cube_pca[:, :, i], cmap="viridis")
+    axes[i].set_title(f"PCA Component {i+1}")
+plt.savefig("week1_data_processing/pca_components.png")
+plt.close()
