@@ -18,3 +18,8 @@ Week 1 Complete. Data pipeline validated on real Salinas hyperspectral dataset.
 
 ## Week 1: Data Processing
 Hyperspectral data pipeline for Salinas dataset - loading, normalization, and PCA.
+
+### Dataset
+Salinas hyperspectral dataset (512x217 pixels, 204 bands, 16 crop classes).
+Source: https://www.ehu.eus/ccwintco/index.php/Hyperspectral_Remote_Sensing_Scenes
+Source: https://www.kaggle.com/datasets/sreevallimanda/salinas-hyperspectral
