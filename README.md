@@ -15,3 +15,6 @@ Source: https://www.ehu.eus/ccwintco/index.php/Hyperspectral_Remote_Sensing_Scen
 
 ### Status
 Week 1 Complete. Data pipeline validated on real Salinas hyperspectral dataset.
+
+## Week 1: Data Processing
+Hyperspectral data pipeline for Salinas dataset - loading, normalization, and PCA.
