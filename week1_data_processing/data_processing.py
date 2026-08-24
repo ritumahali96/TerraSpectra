@@ -7,3 +7,6 @@ cube = loaded_data["salinas_corrected"]
 
 gt_data = sio.loadmat("salinas_gt.mat")
 gt = gt_data["salinas_gt"]
+
+print("Cube shape:", cube.shape)
+print("GT shape:", gt.shape)
