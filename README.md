@@ -12,3 +12,6 @@ Source: https://www.ehu.eus/ccwintco/index.php/Hyperspectral_Remote_Sensing_Scen
 - PCA reduced 204 bands to 15 components (99.95% variance preserved)
 - PCA Component 1 visually matches ground truth field boundaries
 - Confirms spectral data is well-structured for downstream 3D-CNN + ViT model
+
+### Status
+Week 1 Complete. Data pipeline validated on real Salinas hyperspectral dataset.
