@@ -69,3 +69,12 @@ class Simple3DCNN(nn.Module):
         self.dropout = nn.Dropout(0.4)
         self.fc1 = nn.Linear(16 * 15 * 5 * 5, 128)
         self.fc2 = nn.Linear(128, num_classes)
+
+    def forward(self, x):
+        x = F.relu(self.conv1(x))
+        x = F.relu(self.conv2(x))
+        x = x.view(x.size(0), -1)
+        x = self.dropout(x)
+        x = F.relu(self.fc1(x))
+        x = self.fc2(x)
+        return x
