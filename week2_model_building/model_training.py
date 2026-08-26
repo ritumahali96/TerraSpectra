@@ -78,3 +78,6 @@ class Simple3DCNN(nn.Module):
         x = F.relu(self.fc1(x))
         x = self.fc2(x)
         return x
+
+model = Simple3DCNN(num_classes=16).to(device)
+print(model)
