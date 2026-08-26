@@ -125,3 +125,24 @@ for epoch in range(num_epochs):
     loss_values.append(epoch_loss)
     print(f"Epoch [{epoch+1}/{num_epochs}] - Loss: {epoch_loss:.4f} - Accuracy: {epoch_acc:.2f}%")
     
+
+import matplotlib.pyplot as plt
+
+epochs = list(range(1, num_epochs + 1))
+fig, axes = plt.subplots(1, 2, figsize=(14, 5))
+
+axes[0].plot(epochs, accuracy_values, marker="o", color="green")
+axes[0].set_title("Training Accuracy over Epochs")
+axes[0].set_xlabel("Epoch")
+axes[0].set_ylabel("Accuracy (%)")
+axes[0].grid(alpha=0.3)
+
+axes[1].plot(epochs, loss_values, marker="o", color="red")
+axes[1].set_title("Training Loss over Epochs")
+axes[1].set_xlabel("Epoch")
+axes[1].set_ylabel("Loss")
+axes[1].grid(alpha=0.3)
+
+plt.tight_layout()
+plt.savefig("week2_model_building/training_curves.png", dpi=150)
+plt.close()
