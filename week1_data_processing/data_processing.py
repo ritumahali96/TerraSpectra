@@ -34,3 +34,5 @@ total_variance = pca.explained_variance_ratio_.sum() * 100
 print(f"Variance preserved: {total_variance:.2f}%")
 
 np.save("week1_data_processing/salinas_cube_pca.npy", cube_pca)
+
+np.save("week1_data_processing/salinas_gt.npy", gt)
