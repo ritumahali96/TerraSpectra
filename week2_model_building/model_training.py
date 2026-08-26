@@ -38,3 +38,12 @@ patches, labels = create_patches(cube_pca, gt, patch_size=5)
 print("Patches shape:", patches.shape)
 print("Labels shape:", labels.shape)
 print("Number of classes:", len(np.unique(labels)))
+
+from sklearn.model_selection import train_test_split
+
+X_train, X_test, y_train, y_test = train_test_split(
+    patches, labels, test_size=0.2, random_state=42, stratify=labels
+)
+
+print("Training samples:", X_train.shape[0])
+print("Testing samples:", X_test.shape[0])
