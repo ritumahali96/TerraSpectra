@@ -65,3 +65,7 @@ class Simple3DCNN(nn.Module):
         super(Simple3DCNN, self).__init__()
         self.conv1 = nn.Conv3d(in_channels=1, out_channels=8, kernel_size=(3, 3, 3), padding=1)
         self.conv2 = nn.Conv3d(in_channels=8, out_channels=16, kernel_size=(3, 3, 3), padding=1)
+
+        self.dropout = nn.Dropout(0.4)
+        self.fc1 = nn.Linear(16 * 15 * 5 * 5, 128)
+        self.fc2 = nn.Linear(128, num_classes)
