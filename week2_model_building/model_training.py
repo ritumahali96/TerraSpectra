@@ -94,3 +94,34 @@ criterion = nn.CrossEntropyLoss()
 optimizer = torch.optim.Adam(model.parameters(), lr=0.001)
 
 print("Training setup ready. Number of batches per epoch:", len(train_loader))
+
+num_epochs = 15
+accuracy_values = []
+loss_values = []
+
+for epoch in range(num_epochs):
+    model.train()
+    running_loss = 0.0
+    correct = 0
+    total = 0
+
+    for batch_X, batch_y in train_loader:
+        batch_X, batch_y = batch_X.to(device), batch_y.to(device)
+
+        optimizer.zero_grad()
+        outputs = model(batch_X)
+        loss = criterion(outputs, batch_y)
+        loss.backward()
+        optimizer.step()
+
+        running_loss += loss.item()
+        _, predicted = torch.max(outputs, 1)
+        correct += (predicted == batch_y).sum().item()
+        total += batch_y.size(0)
+
+    epoch_loss = running_loss / len(train_loader)
+    epoch_acc = 100 * correct / total
+    accuracy_values.append(epoch_acc)
+    loss_values.append(epoch_loss)
+    print(f"Epoch [{epoch+1}/{num_epochs}] - Loss: {epoch_loss:.4f} - Accuracy: {epoch_acc:.2f}%")
+    
