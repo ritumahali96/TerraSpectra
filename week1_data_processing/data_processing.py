@@ -29,3 +29,6 @@ flat = cube_norm.reshape(-1, B)
 pca = PCA(n_components=15)
 flat_pca = pca.fit_transform(flat)
 cube_pca = flat_pca.reshape(H, W, 15)
+
+total_variance = pca.explained_variance_ratio_.sum() * 100
+print(f"Variance preserved: {total_variance:.2f}%")
