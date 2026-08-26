@@ -77,3 +77,6 @@ plt.legend()
 plt.title("Spectral Signature Comparison")
 plt.savefig("week1_data_processing/spectral_signatures.png")
 plt.close()
+
+# Note: 1e-8 added in normalization step above to prevent divide-by-zero
+# when band_max equals band_min for a constant band
