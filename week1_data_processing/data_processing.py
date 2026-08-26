@@ -22,3 +22,10 @@ for b in range(B):
     cube_norm[:, :, b] = (band - band_min) / (band_max - band_min + 1e-8)
 
 print("Normalization done. Value range:", cube_norm.min(), "-", cube_norm.max())
+
+from sklearn.decomposition import PCA
+
+flat = cube_norm.reshape(-1, B)
+pca = PCA(n_components=15)
+flat_pca = pca.fit_transform(flat)
+cube_pca = flat_pca.reshape(H, W, 15)
