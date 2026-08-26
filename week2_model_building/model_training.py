@@ -51,3 +51,11 @@ print("Testing samples:", X_test.shape[0])
 # Rearrange dimensions: bands become the depth dimension for Conv3D
 X_train = np.transpose(X_train, (0, 3, 1, 2))
 X_test = np.transpose(X_test, (0, 3, 1, 2))
+
+X_train = torch.tensor(X_train, dtype=torch.float32).unsqueeze(1)
+X_test = torch.tensor(X_test, dtype=torch.float32).unsqueeze(1)
+y_train = torch.tensor(y_train, dtype=torch.long)
+y_test = torch.tensor(y_test, dtype=torch.long)
+
+print("Final training tensor shape:", X_train.shape)
+print("Final testing tensor shape:", X_test.shape)
