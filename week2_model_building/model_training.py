@@ -146,3 +146,18 @@ axes[1].grid(alpha=0.3)
 plt.tight_layout()
 plt.savefig("week2_model_building/training_curves.png", dpi=150)
 plt.close()
+
+model.eval()
+correct = 0
+total = 0
+
+with torch.no_grad():
+    for batch_X, batch_y in test_loader:
+        batch_X, batch_y = batch_X.to(device), batch_y.to(device)
+        outputs = model(batch_X)
+        _, predicted = torch.max(outputs, 1)
+        correct += (predicted == batch_y).sum().item()
+        total += batch_y.size(0)
+
+test_accuracy = 100 * correct / total
+print(f"Test Accuracy: {test_accuracy:.2f}%")
