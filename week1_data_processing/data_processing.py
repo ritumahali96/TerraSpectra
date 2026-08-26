@@ -36,3 +36,11 @@ print(f"Variance preserved: {total_variance:.2f}%")
 np.save("week1_data_processing/salinas_cube_pca.npy", cube_pca)
 
 np.save("week1_data_processing/salinas_gt.npy", gt)
+
+import matplotlib.pyplot as plt
+
+false_color = cube_norm[:, :, [29, 19, 9]]
+plt.imshow(false_color)
+plt.title("False-Color Composite")
+plt.savefig("week1_data_processing/false_color.png")
+plt.close()
