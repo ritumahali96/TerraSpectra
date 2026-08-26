@@ -51,3 +51,6 @@ Source: https://www.kaggle.com/datasets/sreevallimanda/salinas-hyperspectral
 
 ### Status
 Week 1 Complete. Data pipeline validated on real Salinas hyperspectral dataset.
+
+## Week 1: Data Processing
+Hyperspectral data pipeline for Salinas dataset - loading, normalization, and PCA.
