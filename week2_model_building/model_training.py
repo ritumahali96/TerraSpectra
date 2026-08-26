@@ -59,3 +59,9 @@ y_test = torch.tensor(y_test, dtype=torch.long)
 
 print("Final training tensor shape:", X_train.shape)
 print("Final testing tensor shape:", X_test.shape)
+
+class Simple3DCNN(nn.Module):
+    def __init__(self, num_classes=16):
+        super(Simple3DCNN, self).__init__()
+        self.conv1 = nn.Conv3d(in_channels=1, out_channels=8, kernel_size=(3, 3, 3), padding=1)
+        self.conv2 = nn.Conv3d(in_channels=8, out_channels=16, kernel_size=(3, 3, 3), padding=1)
