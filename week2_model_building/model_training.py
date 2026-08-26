@@ -32,3 +32,9 @@ def create_patches(cube, gt, patch_size=5):
             labels.append(label - 1)
 
     return np.array(patches), np.array(labels)
+
+patches, labels = create_patches(cube_pca, gt, patch_size=5)
+
+print("Patches shape:", patches.shape)
+print("Labels shape:", labels.shape)
+print("Number of classes:", len(np.unique(labels)))
