@@ -20,3 +20,5 @@ for b in range(B):
     band_min = band.min()
     band_max = band.max()
     cube_norm[:, :, b] = (band - band_min) / (band_max - band_min + 1e-8)
+
+print("Normalization done. Value range:", cube_norm.min(), "-", cube_norm.max())
