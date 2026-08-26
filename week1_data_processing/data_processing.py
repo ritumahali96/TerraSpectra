@@ -44,3 +44,8 @@ plt.imshow(false_color)
 plt.title("False-Color Composite")
 plt.savefig("week1_data_processing/false_color.png")
 plt.close()
+
+plt.imshow(gt, cmap="tab20")
+plt.title("Ground Truth")
+plt.savefig("week1_data_processing/ground_truth.png")
+plt.close()
