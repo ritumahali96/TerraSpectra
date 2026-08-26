@@ -56,3 +56,11 @@ for i in range(3):
     axes[i].set_title(f"PCA Component {i+1}")
 plt.savefig("week1_data_processing/pca_components.png")
 plt.close()
+
+plt.plot(np.cumsum(pca.explained_variance_ratio_) * 100, marker="o")
+plt.axhline(95, color="red", linestyle="--")
+plt.xlabel("Number of Components")
+plt.ylabel("Cumulative Variance (%)")
+plt.title("PCA Explained Variance")
+plt.savefig("week1_data_processing/variance_plot.png")
+plt.close()
