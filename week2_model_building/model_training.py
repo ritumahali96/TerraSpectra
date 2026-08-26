@@ -47,3 +47,7 @@ X_train, X_test, y_train, y_test = train_test_split(
 
 print("Training samples:", X_train.shape[0])
 print("Testing samples:", X_test.shape[0])
+
+# Rearrange dimensions: bands become the depth dimension for Conv3D
+X_train = np.transpose(X_train, (0, 3, 1, 2))
+X_test = np.transpose(X_test, (0, 3, 1, 2))
