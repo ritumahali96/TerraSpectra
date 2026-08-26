@@ -20,5 +20,3 @@ with sample counts are: Brocoli-green-weeds-1 (2009), Brocoli-green-weeds-2 (372
 ### Status
 Week 1 Complete. Data pipeline validated on real Salinas hyperspectral dataset.
 
-
-Week 1 Complete. Data pipeline validated on real Salinas hyperspectral dataset.
