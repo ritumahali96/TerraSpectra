@@ -81,3 +81,11 @@ class Simple3DCNN(nn.Module):
 
 model = Simple3DCNN(num_classes=16).to(device)
 print(model)
+
+from torch.utils.data import TensorDataset, DataLoader
+
+train_dataset = TensorDataset(X_train, y_train)
+test_dataset = TensorDataset(X_test, y_test)
+
+train_loader = DataLoader(train_dataset, batch_size=64, shuffle=True)
+test_loader = DataLoader(test_dataset, batch_size=64, shuffle=False)
