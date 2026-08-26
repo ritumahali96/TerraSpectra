@@ -89,3 +89,8 @@ test_dataset = TensorDataset(X_test, y_test)
 
 train_loader = DataLoader(train_dataset, batch_size=64, shuffle=True)
 test_loader = DataLoader(test_dataset, batch_size=64, shuffle=False)
+
+criterion = nn.CrossEntropyLoss()
+optimizer = torch.optim.Adam(model.parameters(), lr=0.001)
+
+print("Training setup ready. Number of batches per epoch:", len(train_loader))
