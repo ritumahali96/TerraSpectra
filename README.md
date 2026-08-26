@@ -20,50 +20,5 @@ with sample counts are: Brocoli-green-weeds-1 (2009), Brocoli-green-weeds-2 (372
 ### Status
 Week 1 Complete. Data pipeline validated on real Salinas hyperspectral dataset.
 
-## Week 1: Data Processing
-Hyperspectral data pipeline for Salinas dataset - loading, normalization, and PCA.
 
-### Dataset
-Salinas hyperspectral dataset (512x217 pixels, 204 bands, 16 crop classes).
-Source: https://www.ehu.eus/ccwintco/index.php/Hyperspectral_Remote_Sensing_Scenes
-Source: https://www.kaggle.com/datasets/sreevallimanda/salinas-hyperspectral
-
-### Results
-- PCA reduced 204 bands to 15 components (99.95% variance preserved)
-- PCA Component 1 visually matches ground truth field boundaries
-- Confirms spectral data is well-structured for downstream 3D-CNN + ViT model
-
-### Status
-Week 1 Complete. Data pipeline validated on real Salinas hyperspectral dataset.
-
-## Week 1: Data Processing
-Hyperspectral data pipeline for Salinas dataset - loading, normalization, and PCA.
-
-### Dataset
-Salinas hyperspectral dataset (512x217 pixels, 204 bands, 16 crop classes).
-Source: https://www.ehu.eus/ccwintco/index.php/Hyperspectral_Remote_Sensing_Scenes
-Source: https://www.kaggle.com/datasets/sreevallimanda/salinas-hyperspectral
-
-### Results
-- PCA reduced 204 bands to 15 components (99.95% variance preserved)
-- PCA Component 1 visually matches ground truth field boundaries
-- Confirms spectral data is well-structured for downstream 3D-CNN + ViT model
-
-### Status
-Week 1 Complete. Data pipeline validated on real Salinas hyperspectral dataset.
-
-## Week 1: Data Processing
-Hyperspectral data pipeline for Salinas dataset - loading, normalization, and PCA.
-
-### Dataset
-Salinas hyperspectral dataset (512x217 pixels, 204 bands, 16 crop classes).
-Source: https://www.ehu.eus/ccwintco/index.php/Hyperspectral_Remote_Sensing_Scenes
-Source: https://www.kaggle.com/datasets/sreevallimanda/salinas-hyperspectral
-
-### Results
-- PCA reduced 204 bands to 15 components (99.95% variance preserved)
-- PCA Component 1 visually matches ground truth field boundaries
-- Confirms spectral data is well-structured for downstream 3D-CNN + ViT model
-
-### Status
 Week 1 Complete. Data pipeline validated on real Salinas hyperspectral dataset.
