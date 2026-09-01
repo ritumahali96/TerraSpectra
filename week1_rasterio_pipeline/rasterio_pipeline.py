@@ -34,3 +34,7 @@ with rasterio.open("salinas_hyperspectral.tif") as src:
     print("Number of bands:", src.count)
     print("Coordinate system:", src.crs)
     parsed_cube = src.read()
+
+# Rearrange to (height, width, bands) format
+parsed_cube = np.transpose(parsed_cube, (1, 2, 0))
+print("Parsed cube shape:", parsed_cube.shape)
