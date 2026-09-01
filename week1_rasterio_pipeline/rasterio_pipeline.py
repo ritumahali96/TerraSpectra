@@ -49,3 +49,7 @@ for b in range(B):
     cube_norm[:, :, b] = (band - band_min) / (band_max - band_min + 1e-8)
 
 print("Normalization done")
+
+from sklearn.decomposition import PCA
+
+flat = cube_norm.reshape(-1, B)
