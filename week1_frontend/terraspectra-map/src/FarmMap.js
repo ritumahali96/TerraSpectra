@@ -6,7 +6,17 @@ import { MAPBOX_TOKEN } from './config';
 import { farmBoundary } from './mockData';
 
 function FarmMap() {
-  return <div id="map-container" style={{ width: '100%', height: '500px' }}></div>;
+  return (
+    <div style={{ width: '100%', height: '500px' }}>
+      <DeckGL
+        initialViewState={INITIAL_VIEW_STATE}
+        controller={true}
+        layers={[farmLayer]}
+      >
+        <StaticMap mapboxApiAccessToken={MAPBOX_TOKEN} />
+      </DeckGL>
+    </div>
+  );
 }
 
 export default FarmMap;
