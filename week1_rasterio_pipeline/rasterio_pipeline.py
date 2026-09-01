@@ -42,3 +42,10 @@ print("Parsed cube shape:", parsed_cube.shape)
 # Normalize each spectral band to 0-1 range
 H, W, B = parsed_cube.shape
 cube_norm = np.zeros_like(parsed_cube)
+
+for b in range(B):
+    band = parsed_cube[:, :, b]
+    band_min, band_max = band.min(), band.max()
+    cube_norm[:, :, b] = (band - band_min) / (band_max - band_min + 1e-8)
+
+print("Normalization done")
