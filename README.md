@@ -11,7 +11,7 @@ Source 1: https://www.ehu.eus/ccwintco/index.php/Hyperspectral_Remote_Sensing_Sc
 
 Source 2: https://www.kaggle.com/datasets/sreevallimanda/salinas-hyperspectral
 
-The 16 Salinas Crop/Land Classesmwith sample counts are: 
+The 16 Salinas Crop/Land Classe with sample counts are: 
 Brocoli-green-weeds-1 (2009)
 Brocoli-green-weeds-2 (3726)
 Fallow (1976)
