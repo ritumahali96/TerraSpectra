@@ -53,3 +53,7 @@ print("Normalization done")
 from sklearn.decomposition import PCA
 
 flat = cube_norm.reshape(-1, B)
+
+pca = PCA(n_components=15)
+flat_pca = pca.fit_transform(flat)
+cube_pca_rasterio = flat_pca.reshape(H, W, 15)
