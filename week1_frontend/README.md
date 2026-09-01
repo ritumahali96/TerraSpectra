@@ -29,3 +29,6 @@ connected via the FastAPI inference endpoint in Week 4.
 ## Next (Week 2)
 Overlay disease-risk heatmap grid using the mock zone data, with color-coded
 risk levels rendered on top of the base map.
+
+## Status
+Week 1 Frontend Complete. Base map, farm boundary, and mock zone data ready.
