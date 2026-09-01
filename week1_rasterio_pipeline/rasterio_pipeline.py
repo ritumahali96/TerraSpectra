@@ -1,0 +1,67 @@
+import rasterio
+from rasterio.transform import from_origin
+import scipy.io as sio
+import numpy as np
+
+# Load original Salinas hyperspectral data
+loaded_data = sio.loadmat("salinas_corrected.mat")
+cube = loaded_data["salinas_corrected"]
+
+gt_data = sio.loadmat("salinas_gt.mat")
+gt = gt_data["salinas_gt"]
+
+print("Cube shape:", cube.shape)
+
+# Prepare cube for GeoTIFF export
+H, W, B = cube.shape
+cube_for_tiff = np.transpose(cube, (2, 0, 1)).astype(np.float32)
+
+# Define fake geographic transform for Salinas Valley coordinates
+transform = from_origin(-121.65, 36.68, 0.0000333, 0.0000333)
+
+# Write the hyperspectral cube as a GeoTIFF file using Rasterio
+with rasterio.open(
+    "salinas_hyperspectral.tif", "w", driver="GTiff",
+    height=H, width=W, count=B, dtype=cube_for_tiff.dtype,
+    crs="EPSG:4326", transform=transform,
+) as dst:
+    dst.write(cube_for_tiff)
+
+print("GeoTIFF file created")
+
+# Parse the GeoTIFF file back using Rasterio
+with rasterio.open("salinas_hyperspectral.tif") as src:
+    print("Number of bands:", src.count)
+    print("Coordinate system:", src.crs)
+    parsed_cube = src.read()
+
+# Rearrange to (height, width, bands) format
+parsed_cube = np.transpose(parsed_cube, (1, 2, 0))
+print("Parsed cube shape:", parsed_cube.shape)
+
+# Normalize each spectral band to 0-1 range
+H, W, B = parsed_cube.shape
+cube_norm = np.zeros_like(parsed_cube)
+
+for b in range(B):
+    band = parsed_cube[:, :, b]
+    band_min, band_max = band.min(), band.max()
+    cube_norm[:, :, b] = (band - band_min) / (band_max - band_min + 1e-8)
+
+print("Normalization done")
+
+from sklearn.decomposition import PCA
+
+flat = cube_norm.reshape(-1, B)
+
+pca = PCA(n_components=15)
+flat_pca = pca.fit_transform(flat)
+cube_pca_rasterio = flat_pca.reshape(H, W, 15)
+
+total_variance = pca.explained_variance_ratio_.sum() * 100
+print(f"Variance preserved: {total_variance:.2f}%")
+
+np.save("week1_rasterio_pipeline/cube_pca_rasterio.npy", cube_pca_rasterio)
+
+# End of Rasterio-based Week 1 pipeline
+# Pipeline: .mat -> GeoTIFF -> Rasterio parse -> normalize -> PCA
