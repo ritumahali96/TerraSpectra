@@ -11,24 +11,7 @@ Source 1: https://www.ehu.eus/ccwintco/index.php/Hyperspectral_Remote_Sensing_Sc
 
 Source 2: https://www.kaggle.com/datasets/sreevallimanda/salinas-hyperspectral
 
-The 16 Salinas Crop/Land Classe with sample counts are: 
-Brocoli-green-weeds-1 (2009)
-Brocoli-green-weeds-2 (3726)
-Fallow (1976)
-Fallow-rough-plow (1394)
-Fallow-smooth (2678)
-Stubble (3959)
-Celery (3579)
-Grapes-untrained (11271)
-Soil-vineyard-develop (6203)
-Corn-senesced-green-weeds (3278)
-Lettuce-romaine-4wk (1068)
-Lettuce-romaine-5wk (1927)
-Lettuce-romaine-6wk (916)
-Lettuce-romaine-7wk (1070) 
-Vinyard-untrained (7268) 
-Vinyard-vertical-trellis (1807)
-total - 54,129 samples
+The 16 Salinas Crop/Land Classe with sample counts are: Brocoli-green-weeds-1 (2009), Brocoli-green-weeds-2 (3726), Fallow (1976), Fallow-rough-plow (1394), Fallow-smooth (2678), Stubble (3959), Celery (3579), Grapes-untrained (11271), Soil-vineyard-develop (6203), Corn-senesced-green-weeds (3278), Lettuce-romaine-4wk (1068), Lettuce-romaine-5wk (1927), Lettuce-romaine-6wk (916), Lettuce-romaine-7wk (1070), Vinyard-untrained (7268), Vinyard-vertical-trellis (1807), totalling into 54,129 samples.
 
 ### Results
 - PCA reduced 204 bands to 15 components (99.95% variance preserved)
