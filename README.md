@@ -1,8 +1,8 @@
 # TerraSpectra
-Hyperspectral Crop Disease Forecasting
-Hyperspectral imaging pipeline for early detection and forecasting of crop diseases using spectral signatures.
-## Week 1: Data Processing
-Hyperspectral data pipeline for Salinas dataset - loading, normalization, and PCA.
+Hyperspectral Crop Disease Forecasting: Hyperspectral imaging pipeline for early detection and forecasting of crop diseases using spectral signatures.
+
+### Domain: Precision Agriculture & Advanced Computer Vision 
+### Problem Statement:  Traditional satellite crop monitoring uses standard RGB or simple infrared imagery. These models only detect crop diseases after the leaves turn yellow or brown, which is too late to save the harvest. Standard 2D Convolutional Neural Networks (CNNs) cannot process the massive depth of data required for early detection. Use Case: An agricultural analyst monitors a 1,000-acre farm via the TerraSpectra dashboard. The system ingests Hyperspectral satellite data (which captures 200+ bands of light, invisible to the human eye). The backend 3D-CNN + Vision Transformer model analyzes the subtle chemical changes in the plants' chlorophyll reflection. The dashboard highlights a specific 5-acre zone in red, predicting a fungal blight outbreak three weeks before any visible symptoms appear on the leaves, allowing for hyper-targeted, preventative pesticide application. 
 
 ### Dataset
 Salinas hyperspectral dataset (512x217 pixels, 204 bands, 16 crop classes).
