@@ -15,3 +15,6 @@ print("Cube shape:", cube.shape)
 # Prepare cube for GeoTIFF export
 H, W, B = cube.shape
 cube_for_tiff = np.transpose(cube, (2, 0, 1)).astype(np.float32)
+
+# Define fake geographic transform for Salinas Valley coordinates
+transform = from_origin(-121.65, 36.68, 0.0000333, 0.0000333)
