@@ -10,3 +10,11 @@ function FarmMap() {
 }
 
 export default FarmMap;
+
+const INITIAL_VIEW_STATE = {
+  longitude: -121.65,
+  latitude: 36.68,
+  zoom: 13,
+  pitch: 0,
+  bearing: 0
+};
