@@ -19,3 +19,9 @@ FastAPI backend.
 Frontend and ML backend are developed independently in Week 1-2, using mock
 data with the same structure the real model will produce. They will be
 connected via the FastAPI inference endpoint in Week 4.
+
+## Results
+- React app scaffolded successfully
+- Deck.gl + Mapbox integrated, rendering base map
+- Farm boundary layer overlaid on Salinas Valley coordinates
+- Mock zone data structured to match future model output
