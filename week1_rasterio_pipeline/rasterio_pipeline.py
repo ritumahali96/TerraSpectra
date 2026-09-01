@@ -28,3 +28,9 @@ with rasterio.open(
     dst.write(cube_for_tiff)
 
 print("GeoTIFF file created")
+
+# Parse the GeoTIFF file back using Rasterio
+with rasterio.open("salinas_hyperspectral.tif") as src:
+    print("Number of bands:", src.count)
+    print("Coordinate system:", src.crs)
+    parsed_cube = src.read()
