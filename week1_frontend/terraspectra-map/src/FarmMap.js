@@ -37,3 +37,6 @@ const farmLayer = new GeoJsonLayer({
   getLineColor: [151, 188, 98],
   lineWidthMinPixels: 2
 });
+
+// End of Week 1 Frontend scaffolding
+// Base map + farm boundary complete; heatmap overlay comes in Week 2
