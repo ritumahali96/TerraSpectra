@@ -15,3 +15,7 @@ real-world satellite data formats, not just pre-packaged datasets.
 - GeoTIFF successfully created and parsed: 204 bands, EPSG:4326 CRS
 - PCA reduced 204 bands to 15 components
 - Variance preserved: 99.95%
+
+## Status
+Rasterio-based Week 1 pipeline complete. Matches project requirement:
+"Use Rasterio to parse hyperspectral data cubes (GeoTIFF format)."
