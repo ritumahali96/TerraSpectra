@@ -25,3 +25,7 @@ connected via the FastAPI inference endpoint in Week 4.
 - Deck.gl + Mapbox integrated, rendering base map
 - Farm boundary layer overlaid on Salinas Valley coordinates
 - Mock zone data structured to match future model output
+
+## Next (Week 2)
+Overlay disease-risk heatmap grid using the mock zone data, with color-coded
+risk levels rendered on top of the base map.
