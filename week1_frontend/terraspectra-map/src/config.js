@@ -1,1 +1,0 @@
-export const MAPBOX_TOKEN = "YOUR_MAPBOX_TOKEN_HERE";
