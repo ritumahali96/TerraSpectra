@@ -20,8 +20,8 @@ with sample counts are: Brocoli-green-weeds-1 (2009), Brocoli-green-weeds-2 (372
 ### Status
 Week 1 Complete. Data pipeline validated on real Salinas hyperspectral dataset.
 
-# TerraSpectra - Week 2: 3D-CNN Model Building
-## Model Architecture
+## TerraSpectra - Week 2: 3D-CNN Model Building
+### Model Architecture
 Custom 3D-CNN with 2 Conv3D layers (8 and 16 filters), dropout (0.4), and 2 fully connected layers. Input: 5x5x15 hyperspectral patches. Output: 16 crop class predictions.
 
 ### Results
