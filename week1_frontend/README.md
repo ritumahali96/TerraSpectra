@@ -32,3 +32,8 @@ risk levels rendered on top of the base map.
 
 ## Status
 Week 1 Frontend Complete. Base map, farm boundary, and mock zone data ready.
+
+## Running the Dashboard
+1. Get a free Mapbox token from mapbox.com
+2. Paste it in `terraspectra-map/src/config.js`
+3. `cd terraspectra-map && npm install && npm start`
