@@ -18,3 +18,12 @@ const INITIAL_VIEW_STATE = {
   pitch: 0,
   bearing: 0
 };
+
+const farmLayer = new GeoJsonLayer({
+  id: 'farm-boundary',
+  data: farmBoundary,
+  filled: true,
+  getFillColor: [44, 95, 45, 100],
+  getLineColor: [151, 188, 98],
+  lineWidthMinPixels: 2
+});
