@@ -1,0 +1,4 @@
+[build]
+  base = "week1_frontend/terraspectra-map"
+  command = "npm run build"
+  publish = "build"
