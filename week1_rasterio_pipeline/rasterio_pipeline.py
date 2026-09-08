@@ -187,3 +187,11 @@ for epoch in range(num_epochs):                        # repeat this process 15 
         optimizer.zero_grad()                              # clear gradients from the previous batch
         outputs = model(batch_X)                            # forward pass: get model's predictions
         loss = criterion(outputs, batch_y)                   # calculate how wrong the predictions are
+
+        loss.backward()                                       # backward pass: calculate how to adjust weights
+        optimizer.step()                                       # actually update the model's weights
+
+        running_loss += loss.item()                          # add this batch's loss to the running total
+        _, predicted = torch.max(outputs, 1)                   # get the predicted class (highest score)
+        correct += (predicted == batch_y).sum().item()          # count how many predictions were correct
+        total += batch_y.size(0)                                 # count total samples processed
