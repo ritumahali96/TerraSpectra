@@ -78,3 +78,19 @@ import torch.nn.functional as F
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 print("Using device:", device)
+
+def create_patches(cube, gt, patch_size=5):
+    margin = patch_size // 2
+    padded_cube = np.pad(cube, ((margin, margin), (margin, margin), (0, 0)), mode="reflect")
+    patches = []
+    labels = []
+    H, W, B = cube.shape
+    for i in range(H):
+        for j in range(W):
+            label = gt[i, j]
+            if label == 0:
+                continue
+            patch = padded_cube[i:i+patch_size, j:j+patch_size, :]
+            patches.append(patch)
+            labels.append(label - 1)
+    return np.array(patches), np.array(labels)
