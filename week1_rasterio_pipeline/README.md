@@ -4,3 +4,9 @@
 Converted the real Salinas hyperspectral cube into GeoTIFF format,
 then parsed it using Rasterio (matching the project's satellite raster
 format requirement) instead of directly reading the .mat file.
+
+## Why GeoTIFF
+GeoTIFF is the standard format for satellite/geospatial raster data
+(used by NASA Hyperion, ESA Sentinel). Converting our data into this
+format and parsing it with Rasterio validates the pipeline works with
+real-world satellite data formats, not just pre-packaged datasets.
