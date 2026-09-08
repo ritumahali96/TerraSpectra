@@ -180,3 +180,10 @@ for epoch in range(num_epochs):                        # repeat this process 15 
     running_loss = 0.0                                    # track total loss for this epoch
     correct = 0                                            # track number of correct predictions
     total = 0                                              # track total number of predictions made
+
+    for batch_X, batch_y in train_loader:                 # loop through each batch of 64 samples
+        batch_X, batch_y = batch_X.to(device), batch_y.to(device)   # move this batch to GPU
+
+        optimizer.zero_grad()                              # clear gradients from the previous batch
+        outputs = model(batch_X)                            # forward pass: get model's predictions
+        loss = criterion(outputs, batch_y)                   # calculate how wrong the predictions are
