@@ -106,3 +106,17 @@ X_train, X_test, y_train, y_test = train_test_split(
 )
 print("Training samples:", X_train.shape[0])
 print("Testing samples:", X_test.shape[0])
+
+# PyTorch expects shape: (batch, channels, depth, height, width)
+# our patches are currently (samples, height, width, bands) - need to rearrange
+X_train = np.transpose(X_train, (0, 3, 1, 2))    # move bands to act as the "depth" dimension
+X_test = np.transpose(X_test, (0, 3, 1, 2))
+
+# convert numpy arrays into PyTorch tensors (the format PyTorch models understand)
+X_train = torch.tensor(X_train, dtype=torch.float32).unsqueeze(1)   # add a "channel" dimension (required by Conv3D)
+X_test = torch.tensor(X_test, dtype=torch.float32).unsqueeze(1)
+y_train = torch.tensor(y_train, dtype=torch.long)                    # convert labels to PyTorch's integer tensor format
+y_test = torch.tensor(y_test, dtype=torch.long)
+
+print("Final training tensor shape:", X_train.shape)
+print("Final testing tensor shape:", X_test.shape)
