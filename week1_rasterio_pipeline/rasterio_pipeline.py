@@ -174,3 +174,9 @@ print("Training setup ready. Number of batches per epoch:", len(train_loader))
 num_epochs = 15   # how many times the model will see the entire training dataset
 accuracy_values = []    # list to store accuracy after each epoch
 loss_values = []        # list to store loss after each epoch
+
+for epoch in range(num_epochs):                        # repeat this process 15 times (15 epochs)
+    model.train()                                        # set model to training mode (enables dropout)
+    running_loss = 0.0                                    # track total loss for this epoch
+    correct = 0                                            # track number of correct predictions
+    total = 0                                              # track total number of predictions made
