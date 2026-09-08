@@ -205,3 +205,11 @@ for epoch in range(num_epochs):                        # repeat this process 15 
 model.eval()                                    # set model to evaluation mode (disables dropout)
 correct = 0
 total = 0
+
+with torch.no_grad():                            # disable gradient calculation - faster, saves memory during testing
+    for batch_X, batch_y in test_loader:         # loop through each batch in the test set
+        batch_X, batch_y = batch_X.to(device), batch_y.to(device)   # move batch to GPU
+        outputs = model(batch_X)                  # get model's predictions
+        _, predicted = torch.max(outputs, 1)        # get predicted class (highest score)
+        correct += (predicted == batch_y).sum().item()   # count correct predictions
+        total += batch_y.size(0)                          # count total samples
