@@ -152,3 +152,21 @@ class Simple3DCNN(nn.Module):                          # define our neural netwo
 # create the model and move it to GPU (if available)
 model = Simple3DCNN(num_classes=16).to(device)          # instantiate the model
 print(model)                                              # print architecture to verify it's built correctly
+
+from torch.utils.data import TensorDataset, DataLoader   # tools for batching data efficiently
+
+# combine features and labels into a single dataset object
+train_dataset = TensorDataset(X_train, y_train)
+test_dataset = TensorDataset(X_test, y_test)
+
+# DataLoader splits data into small batches and shuffles training data each epoch
+train_loader = DataLoader(train_dataset, batch_size=64, shuffle=True)
+test_loader = DataLoader(test_dataset, batch_size=64, shuffle=False)
+
+# loss function - measures how wrong the model's predictions are
+criterion = nn.CrossEntropyLoss()
+
+# optimizer - updates model weights to reduce the loss (Adam is a reliable, popular choice)
+optimizer = torch.optim.Adam(model.parameters(), lr=0.001)
+
+print("Training setup ready. Number of batches per epoch:", len(train_loader))
