@@ -148,3 +148,7 @@ class Simple3DCNN(nn.Module):                          # define our neural netwo
         x = F.relu(self.fc1(x))                             # first dense layer with ReLU
         x = self.fc2(x)                                      # final output layer (raw class scores)
         return x
+
+# create the model and move it to GPU (if available)
+model = Simple3DCNN(num_classes=16).to(device)          # instantiate the model
+print(model)                                              # print architecture to verify it's built correctly
