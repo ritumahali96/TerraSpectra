@@ -60,3 +60,5 @@ cube_pca_rasterio = flat_pca.reshape(H, W, 15)
 
 total_variance = pca.explained_variance_ratio_.sum() * 100
 print(f"Variance preserved: {total_variance:.2f}%")
+
+np.save("week1_rasterio_pipeline/cube_pca_rasterio.npy", cube_pca_rasterio)
