@@ -213,3 +213,6 @@ with torch.no_grad():                            # disable gradient calculation 
         _, predicted = torch.max(outputs, 1)        # get predicted class (highest score)
         correct += (predicted == batch_y).sum().item()   # count correct predictions
         total += batch_y.size(0)                          # count total samples
+
+test_accuracy = 100 * correct / total
+print(f"Test Accuracy: {test_accuracy:.2f}%")
