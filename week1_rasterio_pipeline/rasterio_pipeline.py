@@ -170,3 +170,7 @@ criterion = nn.CrossEntropyLoss()
 optimizer = torch.optim.Adam(model.parameters(), lr=0.001)
 
 print("Training setup ready. Number of batches per epoch:", len(train_loader))
+
+num_epochs = 15   # how many times the model will see the entire training dataset
+accuracy_values = []    # list to store accuracy after each epoch
+loss_values = []        # list to store loss after each epoch
