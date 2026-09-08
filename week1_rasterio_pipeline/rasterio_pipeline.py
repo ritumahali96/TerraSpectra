@@ -201,3 +201,7 @@ for epoch in range(num_epochs):                        # repeat this process 15 
     accuracy_values.append(epoch_acc)                          # save this epoch's accuracy
     loss_values.append(epoch_loss)                              # save this epoch's loss
     print(f"Epoch [{epoch+1}/{num_epochs}] - Loss: {epoch_loss:.4f} - Accuracy: {epoch_acc:.2f}%")
+
+model.eval()                                    # set model to evaluation mode (disables dropout)
+correct = 0
+total = 0
