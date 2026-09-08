@@ -216,3 +216,6 @@ with torch.no_grad():                            # disable gradient calculation 
 
 test_accuracy = 100 * correct / total
 print(f"Test Accuracy: {test_accuracy:.2f}%")
+
+# End of Week 2: 3D-CNN Model Training pipeline
+# Pipeline: GeoTIFF -> Rasterio parse -> PCA -> Patch Extraction -> 3D-CNN Training -> Evaluation
