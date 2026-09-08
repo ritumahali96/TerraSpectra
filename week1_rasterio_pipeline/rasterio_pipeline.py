@@ -120,3 +120,31 @@ y_test = torch.tensor(y_test, dtype=torch.long)
 
 print("Final training tensor shape:", X_train.shape)
 print("Final testing tensor shape:", X_test.shape)
+
+class Simple3DCNN(nn.Module):                          # define our neural network as a class
+    def __init__(self, num_classes=16):                # constructor, runs once when model is created
+        super(Simple3DCNN, self).__init__()             # required setup for all PyTorch models
+
+        # first 3D convolution layer: 1 input channel -> 8 filters, each scanning a 3x3x3 window
+        self.conv1 = nn.Conv3d(in_channels=1, out_channels=8, kernel_size=(3, 3, 3), padding=1)
+
+        # second 3D convolution layer: 8 -> 16 filters, learning more complex patterns
+        self.conv2 = nn.Conv3d(in_channels=8, out_channels=16, kernel_size=(3, 3, 3), padding=1)
+
+        # dropout randomly disables 40% of neurons during training to prevent overfitting
+        self.dropout = nn.Dropout(0.4)
+
+        # fully connected layer: flatten conv output and compress to 128 features
+        self.fc1 = nn.Linear(16 * 15 * 5 * 5, 128)
+
+        # final layer: 128 features -> 16 output scores, one per crop class
+        self.fc2 = nn.Linear(128, num_classes)
+
+    def forward(self, x):                                # defines how data flows through the layers
+        x = F.relu(self.conv1(x))                        # apply first conv layer, then ReLU activation
+        x = F.relu(self.conv2(x))                         # apply second conv layer, then ReLU activation
+        x = x.view(x.size(0), -1)                          # flatten into a 1D vector per sample
+        x = self.dropout(x)                                 # apply dropout
+        x = F.relu(self.fc1(x))                             # first dense layer with ReLU
+        x = self.fc2(x)                                      # final output layer (raw class scores)
+        return x
