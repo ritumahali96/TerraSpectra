@@ -38,3 +38,7 @@ with rasterio.open("salinas_hyperspectral.tif") as src:
 # Rearrange to (height, width, bands) format
 parsed_cube = np.transpose(parsed_cube, (1, 2, 0))
 print("Parsed cube shape:", parsed_cube.shape)
+
+# Normalize each spectral band to 0-1 range
+H, W, B = parsed_cube.shape
+cube_norm = np.zeros_like(parsed_cube)
