@@ -2,6 +2,7 @@ import rasterio
 from rasterio.transform import from_origin
 import scipy.io as sio
 import numpy as np
+from sklearn.decomposition import PCA # PCA is part of Week 1
 
 # Load original Salinas hyperspectral data
 loaded_data = sio.loadmat("salinas_corrected.mat")
@@ -49,8 +50,6 @@ for b in range(B):
     cube_norm[:, :, b] = (band - band_min) / (band_max - band_min + 1e-8)
 
 print("Normalization done")
-
-from sklearn.decomposition import PCA
 
 flat = cube_norm.reshape(-1, B)
 

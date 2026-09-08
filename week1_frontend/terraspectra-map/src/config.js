@@ -1,1 +1,1 @@
-export const MAPBOX_TOKEN = "YOUR_MAPBOX_TOKEN_HERE";
+export const MAPBOX_TOKEN = "pk.eyJ1Ijoicml0dW1haGFsaTk2IiwiYSI6ImNtdG9zazR2djAzOG4yd3NkY2ExNnBhdmoifQ._4seILn1UzctGY0lskXptg"
