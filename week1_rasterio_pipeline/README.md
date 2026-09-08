@@ -10,3 +10,8 @@ GeoTIFF is the standard format for satellite/geospatial raster data
 (used by NASA Hyperion, ESA Sentinel). Converting our data into this
 format and parsing it with Rasterio validates the pipeline works with
 real-world satellite data formats, not just pre-packaged datasets.
+
+## Results
+- GeoTIFF successfully created and parsed: 204 bands, EPSG:4326 CRS
+- PCA reduced 204 bands to 15 components
+- Variance preserved: 99.95%
