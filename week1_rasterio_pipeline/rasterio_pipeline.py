@@ -65,3 +65,13 @@ np.save("week1_rasterio_pipeline/cube_pca_rasterio.npy", cube_pca_rasterio)
 
 # End of Rasterio-based Week 1 pipeline
 # Pipeline: .mat -> GeoTIFF -> Rasterio parse -> normalize -> PCA
+
+# --- Week 2: 3D-CNN Model Training (using Rasterio-derived data) ---
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
+
+# --- Week 2: 3D-CNN Model Training (using Rasterio-derived data) ---
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
