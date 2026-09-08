@@ -195,3 +195,9 @@ for epoch in range(num_epochs):                        # repeat this process 15 
         _, predicted = torch.max(outputs, 1)                   # get the predicted class (highest score)
         correct += (predicted == batch_y).sum().item()          # count how many predictions were correct
         total += batch_y.size(0)                                 # count total samples processed
+
+    epoch_loss = running_loss / len(train_loader)            # calculate average loss for this epoch
+    epoch_acc = 100 * correct / total                          # calculate accuracy percentage for this epoch
+    accuracy_values.append(epoch_acc)                          # save this epoch's accuracy
+    loss_values.append(epoch_loss)                              # save this epoch's loss
+    print(f"Epoch [{epoch+1}/{num_epochs}] - Loss: {epoch_loss:.4f} - Accuracy: {epoch_acc:.2f}%")
