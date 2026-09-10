@@ -26,14 +26,4 @@ connected via the FastAPI inference endpoint in Week 4.
 - Farm boundary layer overlaid on Salinas Valley coordinates
 - Mock zone data structured to match future model output
 
-## Next (Week 2)
-Overlay disease-risk heatmap grid using the mock zone data, with color-coded
-risk levels rendered on top of the base map.
 
-## Status
-Week 1 Frontend Complete. Base map, farm boundary, and mock zone data ready.
-
-## Running the Dashboard
-1. Get a free Mapbox token from mapbox.com
-2. Paste it in `terraspectra-map/src/config.js`
-3. `cd terraspectra-map && npm install && npm start`
