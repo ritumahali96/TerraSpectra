@@ -1,12 +1,12 @@
 import React from 'react';
-import './App.css';
-import FarmMap from './FarmMap';
+import FarmMap from './components/FarmMap';
 
 function App() {
   return (
-    <div className="App">
-      <h1>TerraSpectra Dashboard</h1>
-      <p>Salinas Valley Farm - Hyperspectral Crop Monitoring</p>
+    <div style={{ width: '100vw', height: '100vh', background: '#f0fdf4' }}>
+      <h2 style={{ position: 'absolute', top: 10, left: 10, zIndex: 999, color: 'black' }}>
+        🚜 TerraSpectra Map Loading...
+      </h2>
       <FarmMap />
     </div>
   );
