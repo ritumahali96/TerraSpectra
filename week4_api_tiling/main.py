@@ -18,7 +18,7 @@ print(f"Using device: {device}")
 # --- Load Models ---
 try:
     # Load PCA model
-    pca = joblib.load("week4_api_tiling/pca_model.joblib")
+    pca = joblib.load("pca_model.joblib")
     print("PCA model loaded successfully.")
 except FileNotFoundError:
     raise RuntimeError("pca_model.joblib not found. Ensure it's saved in week4_api_tiling/")
@@ -110,7 +110,7 @@ vit_model = SpectralViT(
 ).to(device)
 
 try:
-    vit_model.load_state_dict(torch.load("week4_api_tiling/spectral_vit_model_state_dict.pth", map_location=device))
+    vit_model.load_state_dict(torch.load("spectral_vit_model_state_dict.pth", map_location=device))
     vit_model.eval()
     print("SpectralViT model state dictionary loaded successfully.")
 except FileNotFoundError:
