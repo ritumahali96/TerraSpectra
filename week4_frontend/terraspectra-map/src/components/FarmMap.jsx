@@ -5,16 +5,16 @@ import { PolygonLayer } from '@deck.gl/layers';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import AnalyticsPanel from './AnalyticsPanel';
 
-// Satellite Color Mapping: Natural semi-transparent overlay
+const TIMELINE_DAYS = [0, 3, 6, 9, 12, 15, 18, 21];
+
 function getRiskColor(riskScore) {
-  if (riskScore >= 0.7) return [239, 68, 68, 175];   // Crimson Red (Blight Outbreak)
-  if (riskScore >= 0.45) return [245, 158, 11, 160]; // Amber Orange (Chemical Stress)
-  if (riskScore >= 0.3) return [234, 179, 8, 140];   // Yellow (Mild Anomaly)
-  return [34, 197, 94, 120];                         // Translucent Green (Healthy)
+  if (riskScore >= 0.7) return [239, 68, 68, 175];
+  if (riskScore >= 0.45) return [245, 158, 11, 160];
+  if (riskScore >= 0.3) return [234, 179, 8, 140];
+  return [34, 197, 94, 120];
 }
 
-// Generates 144 realistic satellite sensor pixels with organic disease spread
-function generateRealisticSatelliteRaster() {
+function generateRealisticSatelliteRaster(dayOffset) {
   const cells = [];
   const rows = 12;
   const cols = 12;
@@ -25,6 +25,8 @@ function generateRealisticSatelliteRaster() {
   const outbreakLon = -121.7435;
   const outbreakLat = 36.6725;
 
+  const growthFactor = 1 + dayOffset * 0.04;
+
   for (let r = 0; r < rows; r++) {
     for (let c = 0; c < cols; c++) {
       const minLon = startLon + c * lonStep;
@@ -34,11 +36,9 @@ function generateRealisticSatelliteRaster() {
       const centerLon = (minLon + maxLon) / 2;
       const centerLat = (minLat + maxLat) / 2;
 
-      // Distance from the biological infection center
       const dist = Math.hypot((centerLon - outbreakLon) * 1.3, centerLat - outbreakLat);
-      // Realistic organic spore diffusion falloff
-      let risk = Math.exp(-dist * 450) * 0.95;
-      risk += Math.sin(r * 2.5 + c * 3.7) * 0.05; // natural irregularity
+      let risk = Math.exp((-dist * 450) / growthFactor) * 0.95;
+      risk += Math.sin(r * 2.5 + c * 3.7) * 0.05;
       risk = Math.max(0.08, Math.min(0.96, risk));
 
       let status = 'Healthy / Optimal';
@@ -64,10 +64,13 @@ function generateRealisticSatelliteRaster() {
 
 export default function FarmMap() {
   const mapContainerRef = useRef(null);
+  const mapRef = useRef(null);
+  const overlayRef = useRef(null);
   const [hoverInfo, setHoverInfo] = useState(null);
+  const [dayIndex, setDayIndex] = useState(TIMELINE_DAYS.length - 1);
 
-  // 144 Realistic Micro-Pixels
-  const satelliteGridData = useMemo(() => generateRealisticSatelliteRaster(), []);
+  const dayOffset = TIMELINE_DAYS[dayIndex];
+  const satelliteGridData = useMemo(() => generateRealisticSatelliteRaster(dayOffset), [dayOffset]);
 
   useEffect(() => {
     mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_TOKEN || 'pk.eyJ1Ijoicml0dW1haGFsaTk2IiwiYSI6ImNtdG9zazR2djAzOG4yd3NkY2ExNnBhdmoifQ._4seILn1UzctGY0lskXptg';
@@ -75,15 +78,26 @@ export default function FarmMap() {
     const map = new mapboxgl.Map({
       container: mapContainerRef.current,
       style: 'mapbox://styles/mapbox/satellite-v9',
-      center: [-121.743, 36.673], // Salinas Valley Farm Center
+      center: [-121.743, 36.673],
       zoom: 14.8,
-      pitch: 48 // Cinematic 3D topography tilt
+      pitch: 48
     });
 
     map.addControl(new mapboxgl.NavigationControl(), 'top-right');
 
-    // High-Resolution Geospatial Raster Overlay
-    const overlay = new MapboxOverlay({
+    const overlay = new MapboxOverlay({ layers: [] });
+    map.addControl(overlay);
+
+    mapRef.current = map;
+    overlayRef.current = overlay;
+
+    return () => map.remove();
+  }, []);
+
+  useEffect(() => {
+    if (!overlayRef.current) return;
+
+    overlayRef.current.setProps({
       layers: [
         new PolygonLayer({
           id: 'hyperspectral-disease-raster',
@@ -94,26 +108,18 @@ export default function FarmMap() {
           lineWidthMinPixels: 0.6,
           getPolygon: (d) => d.polygon,
           getFillColor: (d) => getRiskColor(d.riskScore),
-          getLineColor: [255, 255, 255, 50], // Subtle tech sensor border
+          getLineColor: [255, 255, 255, 50],
           onHover: (info) => setHoverInfo(info.object ? info : null)
         })
       ]
     });
-
-    map.addControl(overlay);
-
-    return () => map.remove();
   }, [satelliteGridData]);
 
   return (
     <div style={{ position: 'relative', width: '100vw', height: '100vh', margin: 0, padding: 0 }}>
-      {/* 1. Satellite Base Map */}
       <div ref={mapContainerRef} style={{ width: '100%', height: '100%' }} />
-
-      {/* 2. Analytics Sidebar (Right Side) */}
       <AnalyticsPanel />
 
-      {/* 3. Top-Left System Badge */}
       <div
         style={{
           position: 'absolute',
@@ -130,7 +136,7 @@ export default function FarmMap() {
         }}
       >
         <div style={{ fontWeight: 'bold', fontSize: '14px', marginBottom: 4, color: '#38bdf8' }}>
-          🛰️ TerraSpectra — Week 3
+          🛰️ TerraSpectra — Week 4
         </div>
         <div><strong>Sensor:</strong> Hyperspectral (200+ Bands)</div>
         <div style={{ fontSize: '11px', color: '#94a3b8', marginTop: 2 }}>
@@ -138,7 +144,6 @@ export default function FarmMap() {
         </div>
       </div>
 
-      {/* 4. Hover Tooltip */}
       {hoverInfo && hoverInfo.object && (
         <div
           style={{
@@ -163,7 +168,6 @@ export default function FarmMap() {
         </div>
       )}
 
-      {/* 5. Risk Scale Legend (Bottom-Left) */}
       <div
         style={{
           position: 'absolute',
@@ -196,6 +200,34 @@ export default function FarmMap() {
           <span style={{ width: 14, height: 14, background: '#ef4444', marginRight: 8, borderRadius: 2 }}></span>
           Predicted Blight Outbreak (&gt; 70%)
         </div>
+      </div>
+
+      <div
+        style={{
+          position: 'absolute',
+          bottom: 24,
+          right: 24,
+          left: 280,
+          background: 'rgba(15, 23, 42, 0.92)',
+          color: 'white',
+          padding: '14px 20px',
+          borderRadius: '8px',
+          boxShadow: '0 4px 12px rgba(0,0,0,0.4)',
+          zIndex: 10,
+          fontFamily: 'sans-serif'
+        }}
+      >
+        <div style={{ fontSize: '12px', marginBottom: 8, color: '#94a3b8' }}>
+          Historical Progression — Day {dayOffset}
+        </div>
+        <input
+          type="range"
+          min={0}
+          max={TIMELINE_DAYS.length - 1}
+          value={dayIndex}
+          onChange={(e) => setDayIndex(Number(e.target.value))}
+          style={{ width: '100%', accentColor: '#38bdf8' }}
+        />
       </div>
     </div>
   );
