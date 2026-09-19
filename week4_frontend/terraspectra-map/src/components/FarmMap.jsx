@@ -218,7 +218,7 @@ export default function FarmMap() {
         }}
       >
         <div style={{ fontSize: '12px', marginBottom: 8, color: '#94a3b8' }}>
-          Historical Progression — Day {dayOffset}
+          Historical Progression — Day {dayOffset} of 21
         </div>
         <input
           type="range"
